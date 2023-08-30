@@ -59,9 +59,9 @@ public class ChatomicManager : MonoBehaviour
     int limitChatGPTResponseWordCount = 48;
 
     //stable diffusion
-    int numStableDiffusionImages = 2;
+    int numStableDiffusionImages = 4;
     int currImage = 0;
-    public static int steps =5;
+    public static int steps =50; //default 50
     public static float ClassifierFreeGuidanceScaleValue = 7.5f;
 
     [SerializeField]
@@ -428,10 +428,11 @@ public class ChatomicManager : MonoBehaviour
         int i = 0;
 
         //Add each section with start time. Each section will be generated as a directory in Assets/Output. Example below:
-        /*var element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Section Example", "0:00"));
-        summaryAndTimesAudioQueue.Enqueue(element);*/
+        var element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Section Example", "0:00"));
+        summaryAndTimesAudioQueue.Enqueue(element);
 
-        var element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Introduction", "0:00"));
+        //Example TechShift F9 episode 9
+        /*var element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Introduction", "0:00"));
         summaryAndTimesAudioQueue.Enqueue(element);
         element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("This week’s guest", "0:32"));
         summaryAndTimesAudioQueue.Enqueue(element);
@@ -457,7 +458,7 @@ public class ChatomicManager : MonoBehaviour
         summaryAndTimesAudioQueue.Enqueue(element);
         element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Chaya’s future plans", "19:54"));
         summaryAndTimesAudioQueue.Enqueue(element);
-        element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Outro", "21:11"));
+        element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Outro", "21:11"));*/
 
         IEnumerator genDirsAndTextFiles = GenerateOutputDirectoriesAndTextFiles();
         yield return genDirsAndTextFiles;
