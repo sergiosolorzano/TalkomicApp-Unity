@@ -59,7 +59,7 @@ public class ChatomicManager : MonoBehaviour
     int limitChatGPTResponseWordCount = 48;
 
     //stable diffusion
-    int numStableDiffusionImages = 4;
+    int numStableDiffusionImages = 2;
     int currImage = 0;
     public static int steps =50; //default 50
     public static float ClassifierFreeGuidanceScaleValue = 7.5f;
@@ -111,8 +111,9 @@ public class ChatomicManager : MonoBehaviour
             Debug.LogError("Prefab not found in Resources/Prefabs folder.");
         }
 
-        fitPaintingsInCanvasScript.AdjustGridLayout(numStableDiffusionImages, panelGO);
-        fitPaintingsInCanvasScript.ScaleObjectToFitCanvas(paintingGOArray, numStableDiffusionImages);
+        fitPaintingsInCanvasScript.AdjustGridLayout(paintingGOArray);
+        //fitPaintingsInCanvasScript.AdjustGridLayout(numStableDiffusionImages, panelGO);
+        //fitPaintingsInCanvasScript.ScaleObjectToFitCanvas(paintingGOArray, numStableDiffusionImages);
     }
 
     IEnumerator AllQueuesAndChunkCreationManager()
