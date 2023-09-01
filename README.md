@@ -47,7 +47,7 @@ Read [the Chatomic app blog](https://tapgaze.com/blog/podcast-to-image-slider/) 
 
 ## Unity Project Features and Setup
 
-* Native dlls (Onnxruntime, NAudio etc) required files: Add the following packages to Visual Studio (tested in VS2022) and dlls to Unity's Assets/Plugins directory.
+* Native dlls (Onnxruntime, NAudio etc) required files: Project should include the following packages to Visual Studio (tested in VS2022) and dlls to Unity's Assets/Plugins directory.
 
   <img width="252" alt="native-dlls" src="https://github.com/sergiosolorzano/ChatomicApp-Unity/assets/24430655/1fd10f26-bf85-400f-b3f1-609b20ebadee">
 
