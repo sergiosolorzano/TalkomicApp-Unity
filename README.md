@@ -47,6 +47,12 @@ Read [the Chatomic app blog](https://tapgaze.com/blog/podcast-to-image-slider/) 
 
 ## Unity Project Features and Setup
 
+* Native dlls (Onnxruntime, NAudio etc) required files: Add the following packages to Visual Studio (tested in VS2022) and dlls to Unity's Assets/Plugins directory.
+
+  <img width="252" alt="native-dlls" src="https://github.com/sergiosolorzano/ChatomicApp-Unity/assets/24430655/1fd10f26-bf85-400f-b3f1-609b20ebadee">
+
+  <img width="512" alt="native-dlls_vs2022" src="https://github.com/sergiosolorzano/ChatomicApp-Unity/assets/24430655/f6f20f8f-5337-466c-b337-f999147c2cf4">
+  
 * Clone and save [weights.pb](https://huggingface.co/CompVis/stable-diffusion-v1-4/tree/onnx/unet) weights file into Assets/Models/unet/ . Fail this location, try [here](https://drive.google.com/file/d/1NvYhoGyw_fuYx9n6KdzWc24n5q6VavOH/view).
   
 * Podcast Audio Section List Required: Create in script ChatomicManager.cs at GenerateSummaryAndTimesAudioQueueAndDirectories() a list for each section in the podcast audio with the section_name and its start time in minutes:seconds.
