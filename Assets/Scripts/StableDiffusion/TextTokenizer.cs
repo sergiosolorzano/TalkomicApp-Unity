@@ -24,7 +24,7 @@ namespace StableDiffusion
                 UnityEngine.Debug.Log("Failed to initiate textTokenizerInferenceSession.");
         }
 
-        public static void Free() { 
+        public static void OnDisableDispose() { 
             if(textTokenizerInferenceSession != null) { textTokenizerInferenceSession.Dispose(); }
             else
             {
@@ -56,7 +56,7 @@ namespace StableDiffusion
             return InputIdsInt;
         }
 
-        public static int[] CreateUncondInput()
+        public static int[] CreateUnconditionalInput()
         {
             var inputIds = new List<int>() { blankTokenValue-1 };
 

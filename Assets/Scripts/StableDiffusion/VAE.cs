@@ -19,7 +19,7 @@ namespace StableDiffusion
                 UnityEngine.Debug.Log("Failed to load vaeDecoderModel.");
         }
 
-        public static void Free() { 
+        public static void OnDisableDispose() { 
             if(vaeDecoderModel!= null) { vaeDecoderModel.Dispose(); }
         }
 

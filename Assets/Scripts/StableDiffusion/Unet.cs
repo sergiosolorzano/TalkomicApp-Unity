@@ -41,7 +41,7 @@ namespace StableDiffusion
                 UnityEngine.Debug.Log("Failed to load UNet model.");
         }
 
-        public static void Free() {
+        public static void OnDisableDispose() {
             
             Debug.Log("Destroying tex:" + listTex.Count);
             foreach (var tex in listTex)
@@ -108,6 +108,7 @@ namespace StableDiffusion
         {
             scheduler = useLMS ? new LMSDiscreteScheduler() : new EulerAncestralDiscreteScheduler();
             var timesteps = scheduler.SetTimesteps(steps);
+            //Debug.Log("Running steps " + steps);
             //UnityEngine.Debug.Log("SetTimeSteps Len:" + timesteps.Length);
 
             var latents = GenerateLatentSample(batch_size, seed, scheduler.InitNoiseSigma);

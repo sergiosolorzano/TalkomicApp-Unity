@@ -8,19 +8,11 @@ using UnityEngine;
 
 public class RunDiffusion : MonoBehaviour
 {
-    /*[HideInInspector]
-    public UnityEvent<bool> aiModelsLoadedCompleteCallback;*/
-
-    // Number of denoising steps (input)
-    [HideInInspector]
-    public int steps = ChatomicManager.steps;
     // Scale for classifier-free guidance
     private float ClassifierFreeGuidanceScaleValue = ChatomicManager.ClassifierFreeGuidanceScaleValue;
     private const bool useLMS = false;
 
     private const int resolution = 512;
-
-    private Texture2D skyboxTexture;
 
     public class Texture2DProperties
     {
@@ -29,7 +21,7 @@ public class RunDiffusion : MonoBehaviour
         public bool mipChainBool = false;
     }
     [HideInInspector]
-    public string promptPainting;
+    public string promptImage;
 
     public void LoadModels()
     {
@@ -41,35 +33,32 @@ public class RunDiffusion : MonoBehaviour
             Application.dataPath + $"/Plugins/ortextensions.dll",
             Application.dataPath + $"/Models/vae_decoder/vae_decoder.onnx"
         );
-
-        skyboxTexture = new Texture2D(resolution, resolution, TextureFormat.RGBA32, false);
     }
 
-    string TrimChatGPTResponse(string paintingDescription, int maxWordCount)
+    string TrimChatGPTResponse(string imageDescription, int maxWordCount)
     {
-        int wordCount = paintingDescription.Split(new char[] { ' ', '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries).Length;
+        int wordCount = imageDescription.Split(new char[] { ' ', '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries).Length;
 
         if (wordCount > maxWordCount)
         {
             int reduce = wordCount - maxWordCount;
-            string[] words = paintingDescription.Split(new char[] { ' ' }, System.StringSplitOptions.RemoveEmptyEntries);
-            paintingDescription = string.Join(" ", words.Take(words.Length - reduce));
-            Debug.Log("***** ChatGPT Response TRIMMED by " + reduce + " words. Final Prompt for Diffusion:"+paintingDescription);
+            string[] words = imageDescription.Split(new char[] { ' ' }, System.StringSplitOptions.RemoveEmptyEntries);
+            imageDescription = string.Join(" ", words.Take(words.Length - reduce));
+            Debug.Log("***** ChatGPT Response TRIMMED by " + reduce + " words. Final Prompt for Diffusion:"+imageDescription);
         }
 
-        return paintingDescription;
+        return imageDescription;
     }
 
-    public async Task<bool> StartDiffusionProcess(string paintingDescription, int maxWordCount)
+    public async Task<bool> StartDiffusionProcess(string imageDescription, int maxWordCount)
     {
         //Ensure no more than limit words are sent for processing by Difussion Process
-        promptPainting =TrimChatGPTResponse(ChatomicManager.custom_diffuser_pre_prompt+paintingDescription,maxWordCount);
-        Debug.Log("***RunDiffusion requested to Start Diffusion process:" + promptPainting);
-        //promptPainting = paintingDescription;
+        promptImage =TrimChatGPTResponse(ChatomicManager.custom_diffuser_pre_prompt+imageDescription,maxWordCount);
+        Debug.Log("***RunDiffusion requested to Start Diffusion process:" + promptImage);
 
         //create empty embeddings
-        await Main.Create_Empty_UncondInput_and_TextEmbeddings(promptPainting);
-        //generate painting
+        await Main.Create_Empty_UncondInput_and_TextEmbeddings(promptImage);
+        //generate image
         await GenerateImage();
         return true;
     }
@@ -94,16 +83,15 @@ public class RunDiffusion : MonoBehaviour
 
         Texture2DProperties texture2DProperties = new Texture2DProperties();
 
-        Debug.Log("GeneratePainting Sentis Steps Before:" + steps);
-        steps = ChatomicManager.steps;
-        Debug.Log("GeneratePainting Sentis Steps After:" + steps);
-        await StableDiffusion.Main.Run(promptPainting, steps, ClassifierFreeGuidanceScaleValue, seed, texture2DProperties, useLMS);
+        Debug.Log("***GenerateImage Sentis Steps Before:" + ChatomicManager.steps);
+        Debug.Log("***GenerateImage Sentis Steps After:" + ChatomicManager.steps);
+        await StableDiffusion.Main.Run(promptImage, ChatomicManager.steps, ClassifierFreeGuidanceScaleValue, seed, texture2DProperties, useLMS);
 
         return true;
     }
     
     void OnDisable()
     {
-        StableDiffusion.Main.Free();
+        StableDiffusion.Main.OnDisableDispose();
     }
 }

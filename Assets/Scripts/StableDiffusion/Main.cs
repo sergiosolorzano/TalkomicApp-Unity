@@ -46,7 +46,7 @@ namespace StableDiffusion
         public static async Task<bool> Create_Empty_UncondInput_and_TextEmbeddings(string prompt)
         {
             // Create uncond_input of blank tokens
-            uncondInputTokens = TextTokenizer.CreateUncondInput();
+            uncondInputTokens = TextTokenizer.CreateUnconditionalInput();
             uncondEmbedding = TextEncoder.Encode(uncondInputTokens).ToArray();
 
             // Concant textEmeddings and uncondEmbedding slice 0
@@ -73,12 +73,12 @@ namespace StableDiffusion
             return true;
         }
 
-        public static void Free()
+        public static void OnDisableDispose()
         {
-            Unet.Free();
-            TextEncoder.Free();
-            TextTokenizer.Free();
-            VAE.Free();
+            Unet.OnDisableDispose();
+            TextEncoder.OnDisableDispose();
+            TextTokenizer.OnDisableDispose();
+            VAE.OnDisableDispose();
         }
     }
 }

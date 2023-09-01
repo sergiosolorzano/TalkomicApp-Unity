@@ -21,7 +21,7 @@ namespace StableDiffusion
                 UnityEngine.Debug.Log("Failed to load TextEncoder model.");
         }
 
-        public static void Free()
+        public static void OnDisableDispose()
         {
             if (textEncoderInferenceSession != null) 
             { textEncoderInferenceSession.Dispose(); }

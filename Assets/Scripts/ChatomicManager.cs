@@ -27,7 +27,7 @@ public class ChatomicManager : MonoBehaviour
     bool textureCompletedCallBackListenerOn = false;
 
     //path to podcast wav
-    string pathToAudioFile = @"C:\AR-VR-Github\UnitySentisStableDiffusion-And-Whisper\Assets\Audio\sampleaudio.wav";
+    string pathToAudioFile = "";
     
     Queue<KeyValuePair<int, Tuple<string, string>>> summaryAndTimesAudioQueue = new Queue<KeyValuePair<int, Tuple<string, string>>>();
     KeyValuePair<int, Tuple<string, string>> summaryAndTimesAudioQueueElement;
@@ -59,9 +59,10 @@ public class ChatomicManager : MonoBehaviour
     int limitChatGPTResponseWordCount = 48;
 
     //stable diffusion
-    int numStableDiffusionImages = 2;
+    int numStableDiffusionImages = 1;
     int currImage = 0;
-    public static int steps =50; //default 50
+    // Number of denoising steps (input)
+    public const int steps =50; //default 50
     public static float ClassifierFreeGuidanceScaleValue = 7.5f;
 
     [SerializeField]
@@ -70,6 +71,8 @@ public class ChatomicManager : MonoBehaviour
 
     void Awake()
     {
+        pathToAudioFile = Application.dataPath + $"/Audio/sampleaudio.wav";
+
         //Debug.Log("Steps awake:" + steps);
         paintingPrefabGOName = "PaintingImagePrefab";
         LoadAndInstantiatePrefabs();
@@ -112,8 +115,6 @@ public class ChatomicManager : MonoBehaviour
         }
 
         fitPaintingsInCanvasScript.AdjustGridLayout(paintingGOArray);
-        //fitPaintingsInCanvasScript.AdjustGridLayout(numStableDiffusionImages, panelGO);
-        //fitPaintingsInCanvasScript.ScaleObjectToFitCanvas(paintingGOArray, numStableDiffusionImages);
     }
 
     IEnumerator AllQueuesAndChunkCreationManager()
@@ -135,7 +136,7 @@ public class ChatomicManager : MonoBehaviour
 #endif
         //load audio and inference models
         LoadAssets();
-        //lazy hack before I implement models loaded callback
+        //TODO - lazy hack before I implement models loaded callback
         userMessagingText.text = "Press Button To Start.";
         whisperTranscribeButton.gameObject.SetActive(true);
     }
@@ -208,7 +209,7 @@ public class ChatomicManager : MonoBehaviour
 
     public void LoadAssets()
     {
-        //load Inference Models
+        //load stable diffusion Inference Models
         runDiffusionScript.LoadModels();
     }
 
@@ -243,7 +244,7 @@ public class ChatomicManager : MonoBehaviour
             int thisSection = summaryAndTimesAudioQueueElement.Key;
             section_dir_name = string.Join("_", summaryAndTimesAudioQueueElement.Key.ToString(), string.Join("_", summaryAndTimesAudioQueueElement.Value.Item1.Split(' ').Take(3)));
             
-            Debug.Log("I've set section_dir_name to " + section_dir_name);
+            //Debug.Log("I've set section_dir_name to " + section_dir_name);
             foreach (var path in createByteChunksScript.chunkPathsPerSectionDict[thisSection])
             {
                 Debug.Log("Process Chunk Section:" + thisSection + "_" + summaryAndTimesAudioQueueElement.Value.Item1 + " audioPath " + path);
@@ -260,9 +261,6 @@ public class ChatomicManager : MonoBehaviour
             textFileName = section_dir_name + ".txt";
             Debug.Log("Calling Transcribe callback - at section_dir_name: " + section_dir_name + " and textfilename:" + textFileName);
             whisperTranscribeCompleteResponseCallback.Invoke(result);
-
-            //show text on screen
-            //runWhisperScript.transcribedText.text = result;
 
             AssetDatabase.Refresh();
         }
@@ -349,7 +347,7 @@ public class ChatomicManager : MonoBehaviour
         }
 
         //show image
-        Debug.Log("Shwoing image " + currImage);
+        //Debug.Log("Shwoing image " + currImage);
         paintingGOArray[currImage].SetActive(true);
         float pixelsPerUnit = 100.0f;
         Rect rect = new Rect(0, 0, texture2D.width, texture2D.height);
@@ -367,7 +365,7 @@ public class ChatomicManager : MonoBehaviour
 
     private static void WriteToFile(string text, string filePath, bool addLine)
     {
-        Debug.Log("****At WriteToFile Filepath" + filePath);
+        //Debug.Log("****At WriteToFile Filepath" + filePath);
         using (StreamWriter writer = new StreamWriter(filePath, true))
         {
             if (addLine)
