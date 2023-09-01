@@ -45,8 +45,10 @@ Read [the Chatomic app blog](https://tapgaze.com/blog/podcast-to-image-slider/) 
   + Links to technical articles and much more
 <p>&nbsp;</p>
 
-## Unity Project Features
+## Unity Project Features and Setup
 
+* Clone and save [weights.pb](https://huggingface.co/CompVis/stable-diffusion-v1-4/tree/onnx/unet) weights file into Assets/Models/unet/ . Fail this location, try [here](https://drive.google.com/file/d/1NvYhoGyw_fuYx9n6KdzWc24n5q6VavOH/view).
+  
 * Podcast Audio Section List Required: Create in script ChatomicManager.cs at GenerateSummaryAndTimesAudioQueueAndDirectories() a list for each section in the podcast audio with the section_name and its start time in minutes:seconds.
 
   + Unity will generate an output directory for each section, save the transcribed text and chatgpt image description for each section, and the images generated.
