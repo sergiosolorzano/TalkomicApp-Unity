@@ -53,8 +53,8 @@ Read [the Chatomic app blog](https://tapgaze.com/blog/podcast-to-image-slider/) 
 
   <img width="512" alt="native-dlls_vs2022" src="https://github.com/sergiosolorzano/ChatomicApp-Unity/assets/24430655/f6f20f8f-5337-466c-b337-f999147c2cf4">
   
-* Clone and save [weights.pb](https://huggingface.co/CompVis/stable-diffusion-v1-4/tree/onnx/unet) weights file into Assets/Models/unet/ .
-  Fail models download availability, try [here](https://drive.google.com/file/d/1NvYhoGyw_fuYx9n6KdzWc24n5q6VavOH/view).
+* Clone and save [weights.pb](https://huggingface.co/CompVis/stable-diffusion-v1-4/tree/onnx/unet) weights file into Assets/Models/unet/ . Step also required for this repo's Release package (file too large).
+  Fail model download availability, try [here](https://drive.google.com/file/d/1NvYhoGyw_fuYx9n6KdzWc24n5q6VavOH/view).
   
 * Podcast Audio Section List Required: Create in script ChatomicManager.cs at GenerateSummaryAndTimesAudioQueueAndDirectories() a list for each section in the podcast audio with the section_name and its start time in minutes:seconds.
 
