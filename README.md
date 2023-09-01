@@ -35,7 +35,7 @@ I am thrilled and truly grateful to Maurizio Raffone at [Tech Shift F9 Podcast](
 + See the Podcasts' AI Images in Augmented Reality😎 with the [Tapgaze app](https://apps.apple.com/gb/app/tapgaze/id1534427791)
 <p>&nbsp;</p>
 
-## Project Blog
+## Project's Blog Post
 Read [the Chatomic app blog](https://tapgaze.com/blog/podcast-to-image-slider/) for the suggested steps to build the project in Unity:
   + Convert AI models to Onnx format using Olive the [whisper-tiny text-transcription AI model](https://tapgaze.com/blog/podcast-to-image-slider/#whisper-olive)
   + Processing [chunked podcast audio](https://tapgaze.com/blog/podcast-to-image-slider/#whisper-chunks) for whisper
