@@ -108,7 +108,9 @@ This project is licensed under the MIT License. See LICENSE.txt for more informa
 <p>&nbsp;</p>
 
 ## Thank you
-We thank [@sd-akashic](https://github.com/Maks-s/sd-akashic) [@Haoming02](https://github.com/Haoming02/stable-diffusion-for-unity) [@Microsoft](https://github.com/cassiebreviu/StableDiffusion) for helping to better understand onnxruntime implementation in Unity.
+We thank [@sd-akashic](https://github.com/Maks-s/sd-akashic) [@Haoming02](https://github.com/Haoming02/stable-diffusion-for-unity) [@Microsoft](https://github.com/cassiebreviu/StableDiffusion) for helping to better understand onnxruntime implementation in Unity,
+
+and [ai-forever](https://huggingface.co/ai-forever/Real-ESRGAN) for the [git repo for Real-ESRGAN](https://github.com/ai-forever/Real-ESRGAN).
 
   <p>&nbsp;</p>
   If you find this helpful you can buy me a coffee :)
