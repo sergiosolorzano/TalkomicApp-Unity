@@ -24,7 +24,8 @@ Finally, once the models have generated all images, we enhance these from 512×5
 *512×512* <img width="246" alt="512×512_image" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/01e41039-8f9b-444a-bc57-a800d6db53c1"> *2048x2048* <img width="246" alt="512×512_image" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/9a76a919-2616-4bdd-b7b0-080d9d346847">
 <p>&nbsp;</p>
 
-## Proof of Concept: Talkomic - "<i>Talk</i> and Create a <i>Comic</i>"
+## Watch The Trailer
+### Proof of Concept: Talkomic - "<i>Talk</i> and Create a <i>Comic</i>"
 I am thrilled and truly grateful to Maurizio Raffone at [Tech Shift F9 Podcast](https://linktr.ee/techshiftf9) for trusting me to run a proof of concept of the Talkomic app with the audio file of a fantastic episode in this podcast.
 
 + Watch The [Trailer🎬](https://tapgaze.com/blog/podcast-to-image-slider/#podcast-trailer)
