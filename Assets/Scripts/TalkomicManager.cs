@@ -13,7 +13,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class ChatomicManager : MonoBehaviour
+public class TalkomicManager : MonoBehaviour
 {
     public RunWhisper runWhisperScript;
     public RunChatgpt runChatgptScript;

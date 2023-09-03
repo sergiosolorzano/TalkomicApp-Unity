@@ -9,7 +9,7 @@ using UnityEngine;
 public class RunDiffusion : MonoBehaviour
 {
     // Scale for classifier-free guidance
-    private float ClassifierFreeGuidanceScaleValue = ChatomicManager.ClassifierFreeGuidanceScaleValue;
+    private float ClassifierFreeGuidanceScaleValue = TalkomicManager.ClassifierFreeGuidanceScaleValue;
     private const bool useLMS = false;
 
     private const int resolution = 512;
@@ -53,7 +53,7 @@ public class RunDiffusion : MonoBehaviour
     public async Task<bool> StartDiffusionProcess(string imageDescription, int maxWordCount)
     {
         //Ensure no more than limit words are sent for processing by Difussion Process
-        promptImage =TrimChatGPTResponse(ChatomicManager.custom_diffuser_pre_prompt+imageDescription,maxWordCount);
+        promptImage =TrimChatGPTResponse(TalkomicManager.custom_diffuser_pre_prompt+imageDescription,maxWordCount);
         Debug.Log("***RunDiffusion requested to Start Diffusion process:" + promptImage);
 
         //create empty embeddings
@@ -83,9 +83,9 @@ public class RunDiffusion : MonoBehaviour
 
         Texture2DProperties texture2DProperties = new Texture2DProperties();
 
-        Debug.Log("***GenerateImage Sentis Steps Before:" + ChatomicManager.steps);
-        Debug.Log("***GenerateImage Sentis Steps After:" + ChatomicManager.steps);
-        await StableDiffusion.Main.Run(promptImage, ChatomicManager.steps, ClassifierFreeGuidanceScaleValue, seed, texture2DProperties, useLMS);
+        Debug.Log("***GenerateImage Sentis Steps Before:" + TalkomicManager.steps);
+        Debug.Log("***GenerateImage Sentis Steps After:" + TalkomicManager.steps);
+        await StableDiffusion.Main.Run(promptImage, TalkomicManager.steps, ClassifierFreeGuidanceScaleValue, seed, texture2DProperties, useLMS);
 
         return true;
     }

@@ -38,7 +38,7 @@ namespace AudioNoteTranscription.Whisper
         {
             bool isLoaded = false;
 
-            ChatomicManager.userMessagingText.text = "Loading Full Audio";
+            TalkomicManager.userMessagingText.text = "Loading Full Audio";
 
             StartCoroutine(LoadAudioClipFromPath(audioPathFile, () => isLoaded = true));
 
@@ -72,7 +72,7 @@ namespace AudioNoteTranscription.Whisper
 
         public async Task<string> OnAudioClipLoadedTranscribe(string audioPath)
         {
-            ChatomicManager.userMessagingText.text = "Transcribing Audio Chunk:" + audioPath;
+            TalkomicManager.userMessagingText.text = "Transcribing Audio Chunk:" + audioPath;
             await Task.Delay(250);
             string result = await Inference.Start(WhisperOnnxFilePath, audioPath);
 

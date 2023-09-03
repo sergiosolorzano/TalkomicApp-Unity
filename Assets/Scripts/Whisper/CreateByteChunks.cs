@@ -58,7 +58,7 @@ public class CreateByteChunks : MonoBehaviour
             {
                 chunkPath = chunkBasePath + "_" + chunNum + ".wav";
 
-                ChatomicManager.userMessagingText.text = "Generate Audio Chunk\n" + chunkPath;
+                TalkomicManager.userMessagingText.text = "Generate Audio Chunk\n" + chunkPath;
 
                 // Check how many bytes are left
                 long remainingBytes = endByte - reader.Position;

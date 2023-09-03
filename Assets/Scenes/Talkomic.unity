@@ -830,8 +830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cd1b8f4f3d16b64da2b2de40c7f2e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  steps: 15
-  promptPainting: 
+  promptImage: 
 --- !u!1 &1001723785
 GameObject:
   m_ObjectHideFlags: 0

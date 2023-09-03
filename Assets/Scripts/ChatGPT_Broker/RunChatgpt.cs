@@ -40,7 +40,7 @@ public class RunChatgpt : MonoBehaviour
 
     public void SendTranscribedTextToChatGPT(string transcribedText)
     {
-        gpt_prompt = ChatomicManager.custom_chatgpt_pre_prompt + transcribedText;
+        gpt_prompt = TalkomicManager.custom_chatgpt_pre_prompt + transcribedText;
         GetImageDescription(gpt_prompt, chatgptResponseCallback);
     }
 
