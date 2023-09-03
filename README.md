@@ -1,9 +1,9 @@
 ## Project
 Watching a sound wave or unrelated images for a podcast that is published in a platform that supports video and images can be dull.
 
-We propose asking a trio of AI models, bundled in a [Unity](https://unity.com/) built app named Chatomic, that transcribe the audio to text and generate contexual images closely tied to the transcribed text.
+We propose asking a trio of AI models, bundled in a [Unity](https://unity.com/) built app named Talkomic, that transcribe the audio to text and generate contexual images closely tied to the transcribed text.
 
-<img width="1000" alt="diagram-flow" src="https://github.com/sergiosolorzano/ChatomicApp-Unity/assets/24430655/0c19dd3a-9dd4-42a8-a59d-4838f2de49ba">
+<img width="1000" alt="diagram-flow" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/0c19dd3a-9dd4-42a8-a59d-4838f2de49ba">
 <p>&nbsp;</p>
 
 The AI models in the Unity project of this repo are powered by Microsoft's cross-platform [OnnxRuntime](https://onnxruntime.ai/).
