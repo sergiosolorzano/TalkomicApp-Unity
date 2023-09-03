@@ -15,7 +15,7 @@ We run two of the AI models locally, [Whisper-Tiny](https://huggingface.co/opena
 
 In a Unity scene we loop the AI Models over each podcast audio section to generate the contextual images.
 
-<video src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/d8b81ca5-a478-449c-b102-24d75c8b2e45" controls="controls" muted="muted" playsinline="playsinline">
+<video src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/82a6b89a-bb7a-413c-a0e0-83c44003b0bd" controls="controls" muted="muted" playsinline="playsinline">
       </video>
 <p>&nbsp;</p>
 
@@ -28,7 +28,7 @@ Finally, once the models have generated all images, we enhance these from 512×5
 I am thrilled and truly grateful to Maurizio Raffone at [Tech Shift F9 Podcast](https://linktr.ee/techshiftf9) for trusting me to run a proof of concept of the Talkomic app with the audio file of a fantastic episode in this podcast.
 
 + Watch The [Trailer🎬](https://tapgaze.com/blog/podcast-to-image-slider/#podcast-trailer)
-      <video src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/80671f8f-7975-449d-ab5f-d30ab8a3cd77" controls="controls" playsinline="playsinline">
+      <video src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/cdb7dcbb-e6c1-471a-b715-e815f5e57817" controls="controls" playsinline="playsinline">
             </video>  
 + Watch The <i>Talkomicd</i> [Complete Podcast📽️](https://youtu.be/pWK4vFLD6_E)
 + View and download the [Podcast's AI Image Gallery🎨](https://tapgaze.com/blog/techshift-f9-talkomic-images/#podcast-gallery)
