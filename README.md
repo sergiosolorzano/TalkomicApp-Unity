@@ -13,7 +13,7 @@ We run two of the AI models locally, [Whisper-Tiny](https://huggingface.co/opena
 
 In a Unity scene we loop the AI Models over each podcast audio section to generate the contextual images.
 
-<video src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/82a6b89a-bb7a-413c-a0e0-83c44003b0bd" controls="controls" muted="muted" playsinline="playsinline">
+<video src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/aaa68429-4162-43c6-933a-97e2806c7554" controls="controls" muted="muted" playsinline="playsinline">
       </video>
 
 <p>&nbsp;</p>
