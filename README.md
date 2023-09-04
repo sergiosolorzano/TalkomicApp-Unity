@@ -31,7 +31,7 @@ I am thrilled and truly grateful to Maurizio Raffone at [Tech Shift F9 Podcast](
 + See the Podcasts' AI Images in Augmented Reality😎 with the [Tapgaze app](https://apps.apple.com/gb/app/tapgaze/id1534427791)
 <p>&nbsp;</p>
 
-## Crisper Images: AI Refinement
+## Get Crisper Images with the ESRGAN AI Model
 Finally, once the models have generated all images, we enhance these from 512×512 resolution to crisper 2048×2048 resolutions with the Real-ESRGAN AI Model. Suggested implementation steps in our [blog](https://tapgaze.com/blog/podcast-to-image-slider/#real-esrgan).
 
 *512×512* <img width="246" alt="512×512_image" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/01e41039-8f9b-444a-bc57-a800d6db53c1"> *2048x2048* <img width="246" alt="512×512_image" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/9a76a919-2616-4bdd-b7b0-080d9d346847">
