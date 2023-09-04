@@ -11,7 +11,9 @@ We run two of the AI models locally, [Whisper-Tiny](https://huggingface.co/opena
 <img width="600" alt="diagram-flow" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/e7e43d4b-1def-4324-8937-966ef7899f0c">
 <p>&nbsp;</p>
 
-In a Unity scene we loop the AI Models over each podcast audio section to generate the contextual images.
+In a Unity scene we loop the AI Models over each podcast audio section to generate the contextual images. 
+
+This prototype has been tested on the Unity Editor and not a build.
 
 <video src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/aaa68429-4162-43c6-933a-97e2806c7554" controls="controls" muted="muted" playsinline="playsinline">
       </video>
@@ -69,7 +71,9 @@ This is a prototype repo for proof of concept. Read [the Talkomic app blog](http
   
   <img width="400" alt="audio-chunks" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/502ad067-00db-466c-8f9c-48d466021905">
 
-* AI Generated Images: Shown in the scene along with the transcribed text and chatgpt image description:
+* AI Generated Images: Shown in the scene along with the transcribed text and chatgpt image description.
+
+  N.B. - A black image is likely caused due to a not-safe filter triggered.
 
   <img width="1000" alt="scene-progress" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/67c2f52b-6535-4f9d-a1cb-7f8372b2071a">
 
