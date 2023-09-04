@@ -24,7 +24,7 @@ This prototype has been tested on the Unity Editor and not a build.
 <video src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/42b56411-96ba-4df4-813a-738dcd5097ca" controls="controls" playsinline="playsinline">
       </video>
 
-## Proof of Concept Results: Talkomic App Prototype - "<i>Talk</i> and Create a <i>Comic</i>"
+## Proof of Concept Results: Talkomic App Prototype - "<i>A chat</i> into a <i>Images</i>"
 Special thanks to Jason Gauci co-host at [Programming Throwdown](https://www.programmingthrowdown.com/) podcast [whose idea shared on the podcast](https://youtu.be/4FSG_SMNeuY?si=n9ShykYL7_IldcxS&t=2095) served as inspiration for this prototype.
 
 I am thrilled and truly grateful to Maurizio Raffone at [Tech Shift F9 Podcast](https://linktr.ee/techshiftf9) for trusting me to run a proof of concept of the Talkomic app prototype with the audio file of a fantastic episode in this podcast.
