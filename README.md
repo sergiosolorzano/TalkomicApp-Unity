@@ -19,7 +19,7 @@ In a Unity scene we loop the AI Models over each podcast audio section to genera
 <p>&nbsp;</p>
 
 ## Watch The [Trailer🎬](https://tapgaze.com/blog/podcast-to-image-slider/#podcast-trailer)
-<video src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/cdb7dcbb-e6c1-471a-b715-e815f5e57817" controls="controls" playsinline="playsinline">
+<video src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/42b56411-96ba-4df4-813a-738dcd5097ca" controls="controls" playsinline="playsinline">
       </video>
 
 ## Proof of Concept Results: Talkomic App Prototype - "<i>Talk</i> and Create a <i>Comic</i>"
