@@ -1,12 +1,10 @@
 ## Project
 Watching a sound wave or unrelated images for a podcast that is published in a platform that supports video and images can be dull.
 
-We propose asking a trio of AI models, bundled in a [Unity](https://unity.com/) built app named Talkomic, that transcribe the audio to text and generate contexual images closely tied to the transcribed text.
+We propose asking a trio of AI models, bundled in a [Unity](https://unity.com/) project, to transcribe the audio to text and generate contexual images closely tied to the transcribed text.
 
 <img width="1000" alt="diagram-flow" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/0c19dd3a-9dd4-42a8-a59d-4838f2de49ba">
 <p>&nbsp;</p>
-
-The AI models in the Unity project of this repo are powered by Microsoft's cross-platform [OnnxRuntime](https://onnxruntime.ai/).
 
 We run two of the AI models locally, [Whisper-Tiny](https://huggingface.co/openai/whisper-tiny) and [stable diffusion in U-Net architecture](https://huggingface.co/CompVis/stable-diffusion-v1-4/tree/onnx); we access a third, [Chatgpt](https://learn.microsoft.com/en-us/azure/ai-services/openai/chatgpt-quickstart?tabs=command-line&pivots=programming-language-csharp), remotely via an API.
 
@@ -17,23 +15,24 @@ In a Unity scene we loop the AI Models over each podcast audio section to genera
 
 <video src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/82a6b89a-bb7a-413c-a0e0-83c44003b0bd" controls="controls" muted="muted" playsinline="playsinline">
       </video>
+
 <p>&nbsp;</p>
 
-Finally, once the models have generated all images, we enhance these from 512×512 resolution to crisper 2048×2048 resolutions with the Real-ESRGAN AI Model. Suggested implementation steps in our [blog](https://tapgaze.com/blog/podcast-to-image-slider/#real-esrgan).
+## Watch The [Trailer🎬](https://tapgaze.com/blog/podcast-to-image-slider/#podcast-trailer)
+<video src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/cdb7dcbb-e6c1-471a-b715-e815f5e57817" controls="controls" playsinline="playsinline">
+      </video>
 
-*512×512* <img width="246" alt="512×512_image" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/01e41039-8f9b-444a-bc57-a800d6db53c1"> *2048x2048* <img width="246" alt="512×512_image" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/9a76a919-2616-4bdd-b7b0-080d9d346847">
-<p>&nbsp;</p>
-
-## Watch The Trailer
-### Proof of Concept: Talkomic - "<i>Talk</i> and Create a <i>Comic</i>"
+## Proof of Concept Results: Talkomic App - "<i>Talk</i> and Create a <i>Comic</i>"
 I am thrilled and truly grateful to Maurizio Raffone at [Tech Shift F9 Podcast](https://linktr.ee/techshiftf9) for trusting me to run a proof of concept of the Talkomic app with the audio file of a fantastic episode in this podcast.
-
-+ Watch The [Trailer🎬](https://tapgaze.com/blog/podcast-to-image-slider/#podcast-trailer)
-      <video src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/cdb7dcbb-e6c1-471a-b715-e815f5e57817" controls="controls" playsinline="playsinline">
-            </video>  
 + Watch The <i>Talkomicd</i> [Complete Podcast📽️](https://youtu.be/pWK4vFLD6_E)
 + View and download the [Podcast's AI Image Gallery🎨](https://tapgaze.com/blog/techshift-f9-talkomic-images/#podcast-gallery)
 + See the Podcasts' AI Images in Augmented Reality😎 with the [Tapgaze app](https://apps.apple.com/gb/app/tapgaze/id1534427791)
+<p>&nbsp;</p>
+
+## Crisper Images: AI Refinment
+Finally, once the models have generated all images, we enhance these from 512×512 resolution to crisper 2048×2048 resolutions with the Real-ESRGAN AI Model. Suggested implementation steps in our [blog](https://tapgaze.com/blog/podcast-to-image-slider/#real-esrgan).
+
+*512×512* <img width="246" alt="512×512_image" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/01e41039-8f9b-444a-bc57-a800d6db53c1"> *2048x2048* <img width="246" alt="512×512_image" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/9a76a919-2616-4bdd-b7b0-080d9d346847">
 <p>&nbsp;</p>
 
 ## Project's Blog Post
@@ -47,7 +46,8 @@ Read [the Talkomic app blog](https://tapgaze.com/blog/podcast-to-image-slider/) 
 <p>&nbsp;</p>
 
 ## Unity Project Features and Setup
-
+* The AI models in the Unity project of this repo are powered by Microsoft's cross-platform [OnnxRuntime](https://onnxruntime.ai/).
+  
 * Native dlls (Onnxruntime, NAudio etc) required files: Project should include the following packages to Visual Studio (tested in VS2022 v.17.7.3) and dlls to Unity's Assets/Plugins directory.
 
   <img width="252" alt="native-dlls" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/1fd10f26-bf85-400f-b3f1-609b20ebadee">
