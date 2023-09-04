@@ -22,21 +22,23 @@ In a Unity scene we loop the AI Models over each podcast audio section to genera
 <video src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/cdb7dcbb-e6c1-471a-b715-e815f5e57817" controls="controls" playsinline="playsinline">
       </video>
 
-## Proof of Concept Results: Talkomic App - "<i>Talk</i> and Create a <i>Comic</i>"
-I am thrilled and truly grateful to Maurizio Raffone at [Tech Shift F9 Podcast](https://linktr.ee/techshiftf9) for trusting me to run a proof of concept of the Talkomic app with the audio file of a fantastic episode in this podcast.
+## Proof of Concept Results: Talkomic App Prototype - "<i>Talk</i> and Create a <i>Comic</i>"
+Special thanks to Jason Gauci co-host at [Programming Throwdown](https://www.programmingthrowdown.com/) podcast [whose idea shared on the podcast](https://youtu.be/4FSG_SMNeuY?si=n9ShykYL7_IldcxS&t=2095) served as inspiration for this prototype.
+
+I am thrilled and truly grateful to Maurizio Raffone at [Tech Shift F9 Podcast](https://linktr.ee/techshiftf9) for trusting me to run a proof of concept of the Talkomic app prototype with the audio file of a fantastic episode in this podcast.
 + Watch The <i>Talkomicd</i> [Complete Podcast📽️](https://youtu.be/pWK4vFLD6_E)
 + View and download the [Podcast's AI Image Gallery🎨](https://tapgaze.com/blog/techshift-f9-talkomic-images/#podcast-gallery)
 + See the Podcasts' AI Images in Augmented Reality😎 with the [Tapgaze app](https://apps.apple.com/gb/app/tapgaze/id1534427791)
 <p>&nbsp;</p>
 
-## Crisper Images: AI Refinment
+## Crisper Images: AI Refinement
 Finally, once the models have generated all images, we enhance these from 512×512 resolution to crisper 2048×2048 resolutions with the Real-ESRGAN AI Model. Suggested implementation steps in our [blog](https://tapgaze.com/blog/podcast-to-image-slider/#real-esrgan).
 
 *512×512* <img width="246" alt="512×512_image" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/01e41039-8f9b-444a-bc57-a800d6db53c1"> *2048x2048* <img width="246" alt="512×512_image" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/9a76a919-2616-4bdd-b7b0-080d9d346847">
 <p>&nbsp;</p>
 
 ## Project's Blog Post
-Read [the Talkomic app blog](https://tapgaze.com/blog/podcast-to-image-slider/) for the suggested steps to build the project in Unity:
+This is a prototype repo for proof of concept. Read [the Talkomic app blog](https://tapgaze.com/blog/podcast-to-image-slider/) for the suggested steps to build the project in Unity:
   + Convert AI models to Onnx format using Olive the [whisper-tiny text-transcription AI model](https://tapgaze.com/blog/podcast-to-image-slider/#whisper-olive)
   + Processing [chunked podcast audio](https://tapgaze.com/blog/podcast-to-image-slider/#whisper-chunks) for whisper
   + [Chatgpt API request](https://tapgaze.com/blog/podcast-to-image-slider/#chatgpt)
@@ -100,7 +102,7 @@ Read [the Talkomic app blog](https://tapgaze.com/blog/podcast-to-image-slider/) 
 
       <img width="419" alt="scriptable-credentials-example" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/9b8ed4b2-cd5c-4f80-a100-0c20031d0f4c">
 
-## Project Software
+## Prototype Software
 Unity version: Unity 2021.3.26f1. Only run on Editor, build not tested.
 <p>&nbsp;</p>
 
@@ -109,7 +111,9 @@ This project is licensed under the MIT License. See LICENSE.txt for more informa
 <p>&nbsp;</p>
 
 ## Thank you
-We thank [@sd-akashic](https://github.com/Maks-s/sd-akashic) [@Haoming02](https://github.com/Haoming02/stable-diffusion-for-unity) [@Microsoft](https://github.com/cassiebreviu/StableDiffusion) for helping to better understand onnxruntime implementation in Unity,
+Special thanks to Jason Gauci co-host at [Programming Throwdown](https://www.programmingthrowdown.com/) podcast [whose idea shared on the podcast](https://youtu.be/4FSG_SMNeuY?si=n9ShykYL7_IldcxS&t=2095) served as inspiration for this prototype.
+
+We also thank [@sd-akashic](https://github.com/Maks-s/sd-akashic) [@Haoming02](https://github.com/Haoming02/stable-diffusion-for-unity) [@Microsoft](https://github.com/cassiebreviu/StableDiffusion) for helping to better understand onnxruntime implementation in Unity,
 
 and [ai-forever](https://huggingface.co/ai-forever/Real-ESRGAN) for the [git repo for Real-ESRGAN](https://github.com/ai-forever/Real-ESRGAN).
 
