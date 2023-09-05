@@ -3,25 +3,23 @@ Watching a sound wave or unrelated images for a podcast that is published in a p
 
 We propose asking a trio of AI models, bundled in a [Unity](https://unity.com/) project, to transcribe the audio to text and generate contexual images closely tied to the transcribed text.
 
-<img width="1000" alt="diagram-flow" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/0c19dd3a-9dd4-42a8-a59d-4838f2de49ba">
+<img width="1000" alt="diagram-flow" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/06527403-e51a-4daf-bd77-c8be51e0bfa8">
       <p>&nbsp;</p>
 
 We run two of the AI models locally, [Whisper-Tiny](https://huggingface.co/openai/whisper-tiny) and [stable diffusion in U-Net architecture](https://huggingface.co/CompVis/stable-diffusion-v1-4/tree/onnx); we access a third, [Chatgpt](https://learn.microsoft.com/en-us/azure/ai-services/openai/chatgpt-quickstart?tabs=command-line&pivots=programming-language-csharp), remotely via an API.
 
-<img width="600" alt="diagram-flow" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/e7e43d4b-1def-4324-8937-966ef7899f0c">
+<img width="600" alt="diagram-flow" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/455539a7-0925-46d0-9b60-23557c35b29a">
 <p>&nbsp;</p>
 
 In a Unity scene we loop the AI Models over each podcast audio section to generate the contextual images. 
 
-This prototype has been tested on the Unity Editor and not a build.
-
-<video src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/aaa68429-4162-43c6-933a-97e2806c7554" controls="controls" muted="muted" playsinline="playsinline">
+<video src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/8723ce86-0567-4e1e-9fd0-72330878dc97" controls="controls" muted="muted" playsinline="playsinline">
       </video>
 
 <p>&nbsp;</p>
 
 ## Watch The [Trailer🎬](https://tapgaze.com/blog/podcast-to-image-slider/#podcast-trailer)
-<video src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/42b56411-96ba-4df4-813a-738dcd5097ca" controls="controls" playsinline="playsinline">
+<video src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/99c3459a-6733-437d-8e1d-6d81a82c4edb" controls="controls" playsinline="playsinline">
       </video>
 
 ## Project Motivation
@@ -110,7 +108,10 @@ This is a prototype repo for proof of concept. Read [the Talkomic app blog](http
       <img width="419" alt="scriptable-credentials-example" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/9b8ed4b2-cd5c-4f80-a100-0c20031d0f4c">
 
 ## Prototype Software
-Unity version: Unity 2021.3.26f1. Only run on Editor, build not tested.
+Unity version: Unity 2021.3.26f1.
+
+This prototype has been tested on the Unity Editor and not a build.
+
 <p>&nbsp;</p>
 
 ## License
