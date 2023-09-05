@@ -29,7 +29,7 @@ I am new to AI, keen to tinker and learn !💥 The project provides a good start
 Special thanks to Jason Gauci co-host at [Programming Throwdown](https://www.programmingthrowdown.com/) podcast [whose idea shared on the podcast](https://youtu.be/4FSG_SMNeuY?si=n9ShykYL7_IldcxS&t=2095) served as inspiration for this prototype.
 
 I am thrilled and truly grateful to Maurizio Raffone at [Tech Shift F9 Podcast](https://linktr.ee/techshiftf9) for trusting me to run a proof of concept of the Talkomic app prototype with the audio file of a fantastic episode in this podcast.
-+ Watch The <i>Talkomicd</i> [Complete Podcast📽️](https://youtu.be/pWK4vFLD6_E)
++ Watch The [Complete Podcast with AI Images 📽️](https://youtu.be/pWK4vFLD6_E)
 + View and download the [Podcast's AI Image Gallery🎨](https://tapgaze.com/blog/techshift-f9-talkomic-images/#podcast-gallery)
 + See the Podcasts' AI Images in Augmented Reality😎 with the [Tapgaze app](https://apps.apple.com/gb/app/tapgaze/id1534427791)
 <p>&nbsp;</p>
