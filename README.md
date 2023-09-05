@@ -22,8 +22,12 @@ In a Unity scene we loop the AI Models over each podcast audio section to genera
 <video src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/99c3459a-6733-437d-8e1d-6d81a82c4edb" controls="controls" playsinline="playsinline">
       </video>
 
+<p>&nbsp;</p>
+
 ## Project Motivation
 I am new to AI, keen to tinker and learn !💥 The prototype is a good starting point as proof of concept to test the ability of AI models to help audio media augment its reach.
+
+<p>&nbsp;</p>
 
 ## Proof of Concept Results: Talkomic App Prototype - "<i>A chat</i> into a <i>Images</i>"
 Special thanks to Jason Gauci co-host at [Programming Throwdown](https://www.programmingthrowdown.com/) podcast [whose idea shared on the podcast](https://youtu.be/4FSG_SMNeuY?si=n9ShykYL7_IldcxS&t=2095) served as inspiration for this prototype.
