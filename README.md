@@ -55,10 +55,9 @@ This is a prototype repo for proof of concept. Read [the Talkomic app blog](http
   
 * Native dlls (Onnxruntime, NAudio etc) required files: Project should include the following packages to Visual Studio (tested in VS2022 v.17.7.3) and dlls to Unity's Assets/Plugins directory.
 
-  <img width="252" alt="native-dlls" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/1fd10f26-bf85-400f-b3f1-609b20ebadee">
+<img width="236" alt="native-dlls" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/869dd58e-e631-41c6-8c5c-0081d6e2184b">
+<img width="1031" alt="native-dlls_vs2022" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/e3b37d0f-63d3-4084-adde-0378c393e8ce">
 
-  <img width="512" alt="native-dlls_vs2022" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/f6f20f8f-5337-466c-b337-f999147c2cf4">
-  
 * Clone and save [weights.pb](https://huggingface.co/CompVis/stable-diffusion-v1-4/tree/onnx/unet) weights file into Assets/Models/unet/ . Step also required for this repo's Release package (file too large).
   Fail model download availability, try [here](https://drive.google.com/file/d/1NvYhoGyw_fuYx9n6KdzWc24n5q6VavOH/view).
   
@@ -66,17 +65,17 @@ This is a prototype repo for proof of concept. Read [the Talkomic app blog](http
 
   + Unity will generate an output directory for each section, save the transcribed text and chatgpt image description for each section, and the images generated.
 
-    <img width="400" alt="output-snapshot" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/4cb4a278-83b8-493f-b4b1-3af8d62faeb6">
+    <img width="400" alt="output-snapshot" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/1867ed3f-ae61-46e4-a128-17577cc61c1e">
 
 * Podcast Audio Chunks: The Whisper model is designed to work on audio samples of up to 30s in duration. Hence we chunk the podcast audio for each section in chunks of max 30 seconds but load these as a queue in Whisper-tiny for each podcast section.
-  
-  <img width="400" alt="audio-chunks" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/502ad067-00db-466c-8f9c-48d466021905">
+
+  <img width="400" alt="audio-chunks" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/48a9d83c-1845-4fc8-905f-4fc50bcff946">
 
 * AI Generated Images: Shown in the scene along with the transcribed text and chatgpt image description.
 
   N.B. - A black image is likely caused due to a not-safe filter triggered.
-
-  <img width="1000" alt="scene-progress" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/67c2f52b-6535-4f9d-a1cb-7f8372b2071a">
+  
+  <img width="1000" alt="scene-progress" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/148f09bf-6c33-4df9-813a-fbd37c3c341c">
 
 * Scene Control Input Variables:
   * Script: TalkomicManager.cs:
@@ -101,16 +100,19 @@ This is a prototype repo for proof of concept. Read [the Talkomic app blog](http
 
     + Create the object and add it as property to RunChatgpt.cs component in Hierarchy object "RunChatGPT"
 
-      <img width="400" alt="scriptable-object-snap" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/d3f25819-28f3-491b-80d9-bdf1d8fa5a0e">
+
+      <img width="400" alt="scriptable-object-snap" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/c75765d7-bdcb-438d-86c7-6a2f058da637">
 
     + Enter credentials and request arguments
 
-      <img width="419" alt="scriptable-credentials-example" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/9b8ed4b2-cd5c-4f80-a100-0c20031d0f4c">
+      <img width="419" alt="scriptable-credentials-example" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/39641504-a6a5-442b-94dd-4096721c217b">
 
 ## Prototype Software
 Unity version: Unity 2021.3.26f1.
 
 This prototype has been tested on the Unity Editor and not a build.
+
+Tested on Windows 11 system, 64GB RAM, GPU NVIDIA GeForce RTX 3090 Ti 24GB, CPU 12th Gen Intel i9-12900K, 3400Mhz, 16 cores.
 
 <p>&nbsp;</p>
 
