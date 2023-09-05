@@ -1,3 +1,6 @@
+## Project Motivation
+I am new to AI, keen to tinker and learn !💥 I find the project provides a good starting point to test the ability of AI models to help audio media augment its reach.
+
 ## Project
 Watching a sound wave or unrelated images for a podcast that is published in a platform that supports video and images can be dull.
 
