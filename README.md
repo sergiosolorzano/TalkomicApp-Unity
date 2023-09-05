@@ -4,7 +4,7 @@ Watching a sound wave or unrelated images for a podcast that is published in a p
 We propose asking a trio of AI models, bundled in a [Unity](https://unity.com/) project, to transcribe the audio to text and generate contexual images closely tied to the transcribed text.
 
 <img width="1000" alt="diagram-flow" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/0c19dd3a-9dd4-42a8-a59d-4838f2de49ba">
-<p>&nbsp;</p>
+      <p>&nbsp;</p>
 
 We run two of the AI models locally, [Whisper-Tiny](https://huggingface.co/openai/whisper-tiny) and [stable diffusion in U-Net architecture](https://huggingface.co/CompVis/stable-diffusion-v1-4/tree/onnx); we access a third, [Chatgpt](https://learn.microsoft.com/en-us/azure/ai-services/openai/chatgpt-quickstart?tabs=command-line&pivots=programming-language-csharp), remotely via an API.
 
