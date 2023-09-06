@@ -85,6 +85,13 @@ This is a prototype repo for proof of concept. Read [the Talkomic app blog](http
   * Script: TalkomicManager.cs:
 
     + pathToAudioFile: full path to podcast audio file. Audio file is in sync with the list of section names and start times created in coroutine GenerateSummaryAndTimesAudioQueueAndDirectories()
+      For example, in the case of the Tech Shift F9 E8 podcast, the sections were broken out by the host as shown below, along with the start times.
+
+      <img width="1000" alt="image" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/099d345d-5be0-4545-802f-e1c3c40853b0">
+
+      You'd need to create these sections for your podcast file. Unity will chunk the audio for each section in max 30 sec wav files. Hence each section, with as many 30 second chunk audio files as it is required, will be patched together and transcribed for each section. Each transcribed section is then sent to chatgpt to generate a description of an image for the transcribed text section.
+
+      <img width="250" alt="image" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/c339f59a-d7d3-46bb-874a-07c77fae1106">
 
     + custom_chatgpt_pre_prompt: Text added at the front of the transcribed message sent to Chatgpt to guide chatgpt's response.
 
