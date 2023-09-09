@@ -1,8 +1,8 @@
-using System.Net.NetworkInformation;
-using UnityEditor.Experimental.GraphView;
+//using System.Net.NetworkInformation;
+//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
-using static UnityEngine.UIElements.UxmlAttributeDescription;
+//using static UnityEditor.PlayerSettings;
+//using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 [CreateAssetMenu(fileName = "Azure_Chatgpt_Credentials", menuName = "ChatGPT_Credentials/Azure_API")]
 public class ChatgptCreds: ScriptableObject

@@ -24,7 +24,7 @@ namespace AudioNoteTranscription.Whisper
 
         public void Awake()
         {
-            WhisperOnnxFilePath = Application.dataPath + $"/Models/whisper/model.onnx";
+            WhisperOnnxFilePath = Application.streamingAssetsPath + $"/Models/whisper/model.onnx";
             audioSource = GetComponent<AudioSource>();
         }
 
@@ -62,7 +62,7 @@ namespace AudioNoteTranscription.Whisper
                     AudioClip audioClip = DownloadHandlerAudioClip.GetContent(www);
                     audioSource.clip = audioClip;
                     audioClipTotalLength = audioClip.length;
-                    //audioSource.Play();
+                    audioSource.Play();
                     onComplete?.Invoke();
                     Debug.Log("Invoking Audio Oncomplete");
                 }

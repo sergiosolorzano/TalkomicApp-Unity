@@ -57,9 +57,10 @@ public class TalkomicManager : MonoBehaviour
     int maxChatgptRequestedResponseWords = 41;
     public static string custom_chatgpt_pre_prompt;
     int limitChatGPTResponseWordCount = 48;
+    string sectionToRun = "12"; //hack. disconnected. would run only 1 podcast section
 
     //stable diffusion
-    int numStableDiffusionImages = 1;
+    int numStableDiffusionImages = 2;
     int currImage = 0;
     // Number of denoising steps (input)
     public const int steps =50; //default 50
@@ -71,7 +72,8 @@ public class TalkomicManager : MonoBehaviour
 
     void Awake()
     {
-        pathToAudioFile = Application.dataPath + $"/Audio/sampleaudio.wav";
+        //pathToAudioFile = Application.streamingAssetsPath + $"/Audio/Episode 8 - Chaya Topas.wav";
+        pathToAudioFile = Application.streamingAssetsPath + $"/Audio/PT_E161_LevGenAIHagayLupesko.mp3";
 
         //Debug.Log("Steps awake:" + steps);
         paintingPrefabGOName = "PaintingImagePrefab";
@@ -172,7 +174,15 @@ public class TalkomicManager : MonoBehaviour
         for (int i = 0; i < summaryAndTimesAudioList.Count; i++)
         {
             string filenameHead = string.Join("_", summaryAndTimesAudioList[i].Key.ToString(), string.Join("_", summaryAndTimesAudioList[i].Value.Item1.Split(' ').Take(3)));
-            string chunkPath = $"Assets/{outputDir}/{audioChunkDir}/{filenameHead}";
+
+#if UNITY_EDITOR
+            //string chunkPath = $"/Assets/{outputDir}/{audioChunkDir}/{filenameHead}";
+            string chunkPath = Application.dataPath + $"/{outputDir}/{audioChunkDir}/{filenameHead}";
+            
+#else
+            string chunkPath = Application.persistentDataPath + $"/Assets/{outputDir}/{audioChunkDir}/{filenameHead}";
+#endif
+
             int startTimeSeconds = 0;
             int endTimeSeconds = 0;
 
@@ -187,7 +197,7 @@ public class TalkomicManager : MonoBehaviour
 
             chunkTimeAndPathElement = new KeyValuePair<int, Tuple<int, int, int, string>>(i, new Tuple<int, int, int, string>(summaryAndTimesAudioList[i].Key, startTimeSeconds, endTimeSeconds, chunkPath));
             chunkTimeAndPathQueue.Enqueue(chunkTimeAndPathElement);
-            Debug.Log("Created chunk:" + chunkTimeAndPathElement.Value.Item1 + " StartTime:" + chunkTimeAndPathElement.Value.Item2 + " EndTime:" + chunkTimeAndPathElement.Value.Item3 + " AudioChunkPath:" + chunkTimeAndPathElement.Value.Item4);
+            Debug.Log("Queue chunk:" + chunkTimeAndPathElement.Value.Item1 + " StartTime:" + chunkTimeAndPathElement.Value.Item2 + " EndTime:" + chunkTimeAndPathElement.Value.Item3 + " AudioChunkPath:" + chunkTimeAndPathElement.Value.Item4);
         }
         yield return null;
     }
@@ -238,32 +248,42 @@ public class TalkomicManager : MonoBehaviour
         {
             summaryAndTimesAudioQueueElement = summaryAndTimesAudioQueue.Dequeue();
 
-            Debug.Log("Deque new Item:" + summaryAndTimesAudioQueueElement.Value.Item1 + " currImage " + currImage);
+            //if(summaryAndTimesAudioQueueElement.Key.ToString().Equals(sectionToRun))
+            //{
+                Debug.Log("Deque new Item:" + summaryAndTimesAudioQueueElement.Value.Item1 + " currImage " + currImage);
 
-            var joinedChunksStringBuilder = new StringBuilder();
-            int thisSection = summaryAndTimesAudioQueueElement.Key;
-            section_dir_name = string.Join("_", summaryAndTimesAudioQueueElement.Key.ToString(), string.Join("_", summaryAndTimesAudioQueueElement.Value.Item1.Split(' ').Take(3)));
-            
-            //Debug.Log("I've set section_dir_name to " + section_dir_name);
-            foreach (var path in createByteChunksScript.chunkPathsPerSectionDict[thisSection])
-            {
-                Debug.Log("Process Chunk Section:" + thisSection + "_" + summaryAndTimesAudioQueueElement.Value.Item1 + " audioPath " + path);
-                joinedChunksStringBuilder.Append(await runWhisperScript.OnAudioClipLoadedTranscribe(path));
+                var joinedChunksStringBuilder = new StringBuilder();
+                int thisSection = summaryAndTimesAudioQueueElement.Key;
+                section_dir_name = string.Join("_", summaryAndTimesAudioQueueElement.Key.ToString(), string.Join("_", summaryAndTimesAudioQueueElement.Value.Item1.Split(' ').Take(3)));
+
+                //Debug.Log("I've set section_dir_name to " + section_dir_name);
+                foreach (var path in createByteChunksScript.chunkPathsPerSectionDict[thisSection])
+                {
+                    Debug.Log("Process Chunk Section:" + thisSection + "_" + summaryAndTimesAudioQueueElement.Value.Item1 + " audioPath " + path);
+                    joinedChunksStringBuilder.Append(await runWhisperScript.OnAudioClipLoadedTranscribe(path));
+                }
+
+                //send Event notice to ChatomicManager with transcribed Text
+                string result = joinedChunksStringBuilder.ToString();
+
+                runWhisperScript.transcribedText.text += "<b>Sending transcribed text to chatgpt</b>: " + result;
+                await Task.Delay(250);
+
+                //Debug.Log($"Whisper StringBuilder Complete - Section {thisSection} - send transcribed text to Manager:" + result);
+                textFileName = section_dir_name + ".txt";
+                Debug.Log("Calling Transcribe callback - at section_dir_name: " + section_dir_name + " and textfilename:" + textFileName);
+                whisperTranscribeCompleteResponseCallback.Invoke(result);
+
+#if UNITY_EDITOR
+                AssetDatabase.Refresh();
+#endif
             }
-
-            //send Event notice to ChatomicManager with transcribed Text
-            string result = joinedChunksStringBuilder.ToString();
-
-            runWhisperScript.transcribedText.text += "<b>Sending transcribed text to chatgpt</b>: " + result;
-            await Task.Delay(250);
-
-            //Debug.Log($"Whisper StringBuilder Complete - Section {thisSection} - send transcribed text to Manager:" + result);
-            textFileName = section_dir_name + ".txt";
-            Debug.Log("Calling Transcribe callback - at section_dir_name: " + section_dir_name + " and textfilename:" + textFileName);
-            whisperTranscribeCompleteResponseCallback.Invoke(result);
-
-            AssetDatabase.Refresh();
-        }
+            else
+            {
+                Debug.Log("Skip this section in the queue");
+                queueNextItemCallback.Invoke();
+            }
+        //}
     }
 
     void RegisterChunkCompleteAudio()
@@ -276,7 +296,11 @@ public class TalkomicManager : MonoBehaviour
         userMessagingText.text = "Writing Transcribed Result To Text File.";
 
         //write transcribedText To file
+#if UNITY_EDITOR
         string transcribedTextFilePath = $"{Application.dataPath}/{outputDir}/{section_dir_name}/{textFileName}";
+#else
+        string transcribedTextFilePath = $"{Application.persistentDataPath}/Assets/{outputDir}/{section_dir_name}/{textFileName}";
+#endif
 
         string AudioSectionEndTime;
         if (summaryAndTimesAudioQueue.Count == 0)
@@ -301,7 +325,11 @@ public class TalkomicManager : MonoBehaviour
         //Debug.Log("Manager receives chatgpt painting description" + paintingDescription);
 
         //write transcribedText To file
+#if UNITY_EDITOR
         string paintingDescriptionTextFilePath = $"{Application.dataPath}/{outputDir}/{section_dir_name}/{textFileName}";
+#else
+        string paintingDescriptionTextFilePath = $"{Application.persistentDataPath}/Assets/{outputDir}/{section_dir_name}/{textFileName}";
+#endif
         string paintingDescriptionToInsertInFile = "ChatGPT Painting Description (Response):" + paintingDescription;
         WriteToFile(paintingDescriptionToInsertInFile, paintingDescriptionTextFilePath, true);
 
@@ -382,7 +410,11 @@ public class TalkomicManager : MonoBehaviour
         Debug.Log("Saving Image " +  image_path);
         byte[] pngBytes = texture2D.EncodeToPNG();
 
-         System.IO.File.WriteAllBytes(image_path, pngBytes);
+#if !UNITY_EDITOR
+        image_path = Application.persistentDataPath + "/" + image_path;
+#endif
+        
+        System.IO.File.WriteAllBytes(image_path, pngBytes);
 
 #if UNITY_EDITOR
         AssetDatabase.ImportAsset(image_path);
@@ -395,28 +427,45 @@ public class TalkomicManager : MonoBehaviour
         string[] folders = folderPath.Split('/');
 
         string currentPath = "";
+
+#if !UNITY_EDITOR
+        currentPath = Path.Combine(Application.persistentDataPath, folderPath);
+        Console.WriteLine("Before Creating:"+currentPath);
+        if(!Directory.Exists(currentPath))
+        {
+            //string parentFolder = Path.GetDirectoryName(currentPath);
+            //string newFolderName = Path.GetFileName(currentPath);
+            Console.WriteLine("Before 2 Creating:" + currentPath);
+            System.IO.Directory.CreateDirectory(currentPath);
+            Console.WriteLine("After Creating:" + currentPath);
+        }
+#else
         for (int i = 0; i < folders.Length; i++)
         {
             currentPath = Path.Combine(currentPath, folders[i]);
+
             if (!AssetDatabase.IsValidFolder(currentPath))
             {
                 string parentFolder = Path.GetDirectoryName(currentPath);
                 string newFolderName = Path.GetFileName(currentPath);
                 AssetDatabase.CreateFolder(parentFolder, newFolderName);
-#if UNITY_EDITOR
                 AssetDatabase.ImportAsset(newFolderName);
                 AssetDatabase.Refresh();
-#endif
             }
         }
-
+#endif
         yield return null;
     }
 
     private void CreateOutputTextFile(string filePath)
     {
+#if !UNITY_EDITOR
+        filePath = Path.Combine(Application.persistentDataPath, filePath);
         System.IO.File.WriteAllText(filePath, string.Empty);
+#endif
+
 #if UNITY_EDITOR
+        System.IO.File.WriteAllText(filePath, string.Empty);
         AssetDatabase.ImportAsset(filePath);
         AssetDatabase.Refresh();
 #endif
@@ -427,8 +476,8 @@ public class TalkomicManager : MonoBehaviour
         int i = 0;
 
         //Add each section with start time. Each section will be generated as a directory in Assets/Output. Example below:
-        var element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Section Example", "0:00"));
-        summaryAndTimesAudioQueue.Enqueue(element);
+        /*var element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Section Example", "0:00"));
+        summaryAndTimesAudioQueue.Enqueue(element);*/
 
         //Example TechShift F9 episode 9
         /*var element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Introduction", "0:00"));
@@ -458,6 +507,33 @@ public class TalkomicManager : MonoBehaviour
         element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Chaya’s future plans", "19:54"));
         summaryAndTimesAudioQueue.Enqueue(element);
         element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Outro", "21:11"));*/
+
+        var element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Introductions", "0:00"));
+        summaryAndTimesAudioQueue.Enqueue(element);
+        element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Hagay’s circuitous career journey", "02:09"));
+        summaryAndTimesAudioQueue.Enqueue(element);
+        element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Building software for large factories", "08:25"));
+        summaryAndTimesAudioQueue.Enqueue(element);
+        element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("The reality of new technologies", "17:30"));
+        summaryAndTimesAudioQueue.Enqueue(element);
+        element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("AWS", "28:10"));
+        summaryAndTimesAudioQueue.Enqueue(element);
+        element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Pytorch’s leapfrog advantage", "29:33"));
+        summaryAndTimesAudioQueue.Enqueue(element);
+        element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("MosaicML’s mission", "37:24"));
+        summaryAndTimesAudioQueue.Enqueue(element);
+        element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Generative AI", "39:29"));
+        summaryAndTimesAudioQueue.Enqueue(element);
+        element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Giant data models", "44:39"));
+        summaryAndTimesAudioQueue.Enqueue(element);
+        element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Data access tips", "57:00"));
+        summaryAndTimesAudioQueue.Enqueue(element);
+        element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("MPT-7B", "70:31"));
+        summaryAndTimesAudioQueue.Enqueue(element);
+        element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Careers in Mosaic", "87:01"));
+        summaryAndTimesAudioQueue.Enqueue(element);
+        element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Farewells", "91:46"));
+        summaryAndTimesAudioQueue.Enqueue(element);
 
         IEnumerator genDirsAndTextFiles = GenerateOutputDirectoriesAndTextFiles();
         yield return genDirsAndTextFiles;

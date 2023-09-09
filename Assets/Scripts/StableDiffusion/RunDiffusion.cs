@@ -26,12 +26,18 @@ public class RunDiffusion : MonoBehaviour
     public void LoadModels()
     {
         //Load Models
+        string ortextensionsPath = "";
+#if !UNITY_EDITOR
+        ortextensionsPath = Application.dataPath + $"/Plugins/x86_64/ortextensions.dll";
+#else
+        ortextensionsPath = Application.dataPath + $"/Plugins/ortextensions.dll";
+#endif
         StableDiffusion.Main.Init(
-            Application.dataPath + $"/Models/unet/model.onnx",
-            Application.dataPath + $"/Models/text_encoder/text_encoder_model.onnx",
-            Application.dataPath + $"/Models/tokenizer/cliptokenizer.onnx",
-            Application.dataPath + $"/Plugins/ortextensions.dll",
-            Application.dataPath + $"/Models/vae_decoder/vae_decoder.onnx"
+            Application.streamingAssetsPath + $"/Models/unet/model.onnx",
+            Application.streamingAssetsPath + $"/Models/text_encoder/text_encoder_model.onnx",
+            Application.streamingAssetsPath + $"/Models/tokenizer/cliptokenizer.onnx",
+            ortextensionsPath,
+            Application.streamingAssetsPath + $"/Models/vae_decoder/vae_decoder.onnx"
         );
     }
 
