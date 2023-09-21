@@ -55,6 +55,8 @@ This is a prototype repo for proof of concept. Read [the Talkomic app blog](http
 <p>&nbsp;</p>
 
 ## Unity Project Features and Setup
+* This project has been updated to build for windows. See [updates](https://github.com/sergiosolorzano/TalkomicApp-Unity/blob/main/README.md#update-windows-build-functionality-complete)
+  
 * The AI models in the Unity project of this repo are powered by Microsoft's cross-platform [OnnxRuntime](https://onnxruntime.ai/).
   
 * Native dlls (Onnxruntime, NAudio etc) required files: Project should include the following packages to Visual Studio (tested in VS2022 v.17.7.3) and dlls to Unity's Assets/Plugins directory.
