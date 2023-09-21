@@ -118,10 +118,23 @@ This is a prototype repo for proof of concept. Read [the Talkomic app blog](http
 
       <img width="419" alt="scriptable-credentials-example" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/39641504-a6a5-442b-94dd-4096721c217b">
 
+## Update: Windows Build Functionality Complete
+Key Additions:
+* Audio file is loaded from UI
+* Project is work in progress - audio sections still required to be manually entered before the build: For working demo, upload audio sample [sampleaudio.wav](https://github.com/sergiosolorzano/TalkomicApp-Unity/blob/main/sampleaudio.wav) which corresponds to audio section entered in [TalkomicManager.cs](https://github.com/sergiosolorzano/TalkomicApp-Unity/blob/main/Assets/Scripts/TalkomicManager.cs):
+  
+  <img width="1277" alt="image" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/1c35b924-d3c4-463d-938e-d320db8bb693">
+
+* Chatgpt credentials entered in UI at runtime
+* Windows runtime video demo:
+
+<video src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/bbea4297-5e9f-4cfe-883f-b4c345308320" controls="controls" playsinline="playsinline">
+      </video>
+  
 ## Prototype Software
 Unity version: Unity 2021.3.26f1.
 
-This prototype has been tested on the Unity Editor and not a build.
+This prototype has been tested on the Unity Editor and Windows 11 build.
 
 Tested on Windows 11 system, 64GB RAM, GPU NVIDIA GeForce RTX 3090 Ti 24GB, CPU 12th Gen Intel i9-12900K, 3400Mhz, 16 cores.
 
@@ -136,7 +149,9 @@ Special thanks to Jason Gauci co-host at [Programming Throwdown](https://www.pro
 
 We also thank [@sd-akashic](https://github.com/Maks-s/sd-akashic) [@Haoming02](https://github.com/Haoming02/stable-diffusion-for-unity) [@Microsoft](https://github.com/cassiebreviu/StableDiffusion) for helping to better understand onnxruntime implementation in Unity,
 
-and [ai-forever](https://huggingface.co/ai-forever/Real-ESRGAN) for the [git repo for Real-ESRGAN](https://github.com/ai-forever/Real-ESRGAN).
+and [ai-forever](https://huggingface.co/ai-forever/Real-ESRGAN) for the [git repo for Real-ESRGAN](https://github.com/ai-forever/Real-ESRGAN),
+
+and [yasirkula's Simple File Browser](https://github.com/yasirkula/UnitySimpleFileBrowser).
 
   <p>&nbsp;</p>
   If you find this helpful you can buy me a coffee :)
