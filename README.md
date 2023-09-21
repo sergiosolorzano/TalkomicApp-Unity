@@ -62,7 +62,7 @@ This is a prototype repo for proof of concept. Read [the Talkomic app blog](http
 <img width="236" alt="native-dlls" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/869dd58e-e631-41c6-8c5c-0081d6e2184b">
 <img width="1031" alt="native-dlls_vs2022" src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/e3b37d0f-63d3-4084-adde-0378c393e8ce">
 
-* Clone and save [weights.pb](https://huggingface.co/CompVis/stable-diffusion-v1-4/tree/onnx/unet) weights file into Assets/Models/unet/ . Step also required for this repo's Release package (file too large).
+* Clone and save [weights.pb](https://huggingface.co/CompVis/stable-diffusion-v1-4/tree/onnx/unet) weights file into Assets/StreamingAssets/Models/unet/ . Step also required for this repo's Release package (file too large).
   Fail model download availability, try [here](https://drive.google.com/file/d/1NvYhoGyw_fuYx9n6KdzWc24n5q6VavOH/view).
   
 * Podcast Audio Section List Required: Create in script TalkomicManager.cs at GenerateSummaryAndTimesAudioQueueAndDirectories() a list for each section in the podcast audio with the section_name and its start time in minutes:seconds.
