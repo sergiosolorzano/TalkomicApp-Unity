@@ -59,6 +59,7 @@ public class RunChatgpt : MonoBehaviour
         string secret = AzureChatgptCredentials.secret;
 
         string url = $"{AzureChatgptCredentials.url}/{deploymentId}/chat/completions?api-version={AzureChatgptCredentials.api_version}";
+
         string json = "{" +
             "\"messages\":[{\"role\": \"system\", \"content\": \"" + AzureChatgptCredentials.systemContent + "\"}," +
             "{" + "\"role\": \"user\", \"content\": \"" + chatgpt_prompt + "\"}]," +

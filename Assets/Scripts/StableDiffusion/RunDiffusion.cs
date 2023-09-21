@@ -89,8 +89,6 @@ public class RunDiffusion : MonoBehaviour
 
         Texture2DProperties texture2DProperties = new Texture2DProperties();
 
-        Debug.Log("***GenerateImage Sentis Steps Before:" + TalkomicManager.steps);
-        Debug.Log("***GenerateImage Sentis Steps After:" + TalkomicManager.steps);
         await StableDiffusion.Main.Run(promptImage, TalkomicManager.steps, ClassifierFreeGuidanceScaleValue, seed, texture2DProperties, useLMS);
 
         return true;

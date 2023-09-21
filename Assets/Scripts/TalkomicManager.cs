@@ -15,6 +15,7 @@ using UnityEngine.UI;
 
 public class TalkomicManager : MonoBehaviour
 {
+    public AudioFileBrowser audioFileBrowserScript;
     public RunWhisper runWhisperScript;
     public RunChatgpt runChatgptScript;
     public RunDiffusion runDiffusionScript;
@@ -57,10 +58,9 @@ public class TalkomicManager : MonoBehaviour
     int maxChatgptRequestedResponseWords = 41;
     public static string custom_chatgpt_pre_prompt;
     int limitChatGPTResponseWordCount = 48;
-    string sectionToRun = "12"; //hack. disconnected. would run only 1 podcast section
 
     //stable diffusion
-    int numStableDiffusionImages = 2;
+    int numStableDiffusionImages = 4;
     int currImage = 0;
     // Number of denoising steps (input)
     public const int steps =50; //default 50
@@ -70,16 +70,15 @@ public class TalkomicManager : MonoBehaviour
     public string paintingPrefabGOName;
     public GameObject[] paintingGOArray;
 
+    public GameObject panelMessagesGO;
+
     void Awake()
     {
         //pathToAudioFile = Application.streamingAssetsPath + $"/Audio/Episode 8 - Chaya Topas.wav";
-        pathToAudioFile = Application.streamingAssetsPath + $"/Audio/PT_E161_LevGenAIHagayLupesko.mp3";
 
         //Debug.Log("Steps awake:" + steps);
         paintingPrefabGOName = "PaintingImagePrefab";
         LoadAndInstantiatePrefabs();
-
-        userMessagingText = GameObject.FindWithTag("UserMessagesTextMeshPro").GetComponent<TextMeshProUGUI>();
 
         custom_chatgpt_pre_prompt = $"Provide a concise answer of no more than {maxChatgptRequestedResponseWords} words: Describe an abstract image for this conversation. Do not use names of people or persons. Do not say in the description it is an image of a person. The center or protagonist of the image you describe is not a person. Do not explain the image you describe, only describe the image. This is the conversation:";
         custom_diffuser_pre_prompt = "Paint Cyberpunk style.";
@@ -92,6 +91,29 @@ public class TalkomicManager : MonoBehaviour
         chunkAudioCompleteCallback.AddListener(RegisterChunkCompleteAudio);
         //items queue listener
         queueNextItemCallback.AddListener(DequeItem);
+        //get audio file path from browser
+        audioFileBrowserScript.audioLoadedCallback.AddListener(SetAudioFilePath);
+    }
+
+    void SetAudioFilePath(string audioFilePath)
+    {
+        Debug.Log("Manager got audio file path:" + audioFilePath);
+        pathToAudioFile = audioFilePath;
+    }
+
+    public void StartAudioChunk()
+    {
+        if (String.IsNullOrEmpty(pathToAudioFile))
+        {
+            Debug.LogError("Audio File Not Loaded, restart.");
+            return;
+        }
+        else
+            Debug.Log("Audio path " + pathToAudioFile);
+            
+        panelMessagesGO.SetActive(true);
+        userMessagingText = GameObject.FindWithTag("UserMessagesTextMeshPro").GetComponent<TextMeshProUGUI>();
+
         //Create summary and times queue + chunks
         StartCoroutine(AllQueuesAndChunkCreationManager());
     }
@@ -248,42 +270,34 @@ public class TalkomicManager : MonoBehaviour
         {
             summaryAndTimesAudioQueueElement = summaryAndTimesAudioQueue.Dequeue();
 
-            //if(summaryAndTimesAudioQueueElement.Key.ToString().Equals(sectionToRun))
-            //{
-                Debug.Log("Deque new Item:" + summaryAndTimesAudioQueueElement.Value.Item1 + " currImage " + currImage);
+            Debug.Log("Deque new Item:" + summaryAndTimesAudioQueueElement.Value.Item1 + " currImage " + currImage);
 
-                var joinedChunksStringBuilder = new StringBuilder();
-                int thisSection = summaryAndTimesAudioQueueElement.Key;
-                section_dir_name = string.Join("_", summaryAndTimesAudioQueueElement.Key.ToString(), string.Join("_", summaryAndTimesAudioQueueElement.Value.Item1.Split(' ').Take(3)));
+            var joinedChunksStringBuilder = new StringBuilder();
+            int thisSection = summaryAndTimesAudioQueueElement.Key;
+            section_dir_name = string.Join("_", summaryAndTimesAudioQueueElement.Key.ToString(), string.Join("_", summaryAndTimesAudioQueueElement.Value.Item1.Split(' ').Take(3)));
 
-                //Debug.Log("I've set section_dir_name to " + section_dir_name);
-                foreach (var path in createByteChunksScript.chunkPathsPerSectionDict[thisSection])
-                {
-                    Debug.Log("Process Chunk Section:" + thisSection + "_" + summaryAndTimesAudioQueueElement.Value.Item1 + " audioPath " + path);
-                    joinedChunksStringBuilder.Append(await runWhisperScript.OnAudioClipLoadedTranscribe(path));
-                }
+            //Debug.Log("I've set section_dir_name to " + section_dir_name);
+            foreach (var path in createByteChunksScript.chunkPathsPerSectionDict[thisSection])
+            {
+                Debug.Log("Process Chunk Section:" + thisSection + "_" + summaryAndTimesAudioQueueElement.Value.Item1 + " audioPath " + path);
+                joinedChunksStringBuilder.Append(await runWhisperScript.OnAudioClipLoadedTranscribe(path));
+            }
 
-                //send Event notice to ChatomicManager with transcribed Text
-                string result = joinedChunksStringBuilder.ToString();
+            //send Event notice to ChatomicManager with transcribed Text
+            string result = joinedChunksStringBuilder.ToString();
 
-                runWhisperScript.transcribedText.text += "<b>Sending transcribed text to chatgpt</b>: " + result;
-                await Task.Delay(250);
+            runWhisperScript.transcribedText.text += "<b>Sending transcribed text to chatgpt</b>: " + result;
+            await Task.Delay(250);
 
-                //Debug.Log($"Whisper StringBuilder Complete - Section {thisSection} - send transcribed text to Manager:" + result);
-                textFileName = section_dir_name + ".txt";
-                Debug.Log("Calling Transcribe callback - at section_dir_name: " + section_dir_name + " and textfilename:" + textFileName);
-                whisperTranscribeCompleteResponseCallback.Invoke(result);
+            //Debug.Log($"Whisper StringBuilder Complete - Section {thisSection} - send transcribed text to Manager:" + result);
+            textFileName = section_dir_name + ".txt";
+            Debug.Log("Calling Transcribe callback - at section_dir_name: " + section_dir_name + " and textfilename:" + textFileName);
+            whisperTranscribeCompleteResponseCallback.Invoke(result);
 
 #if UNITY_EDITOR
                 AssetDatabase.Refresh();
 #endif
-            }
-            else
-            {
-                Debug.Log("Skip this section in the queue");
-                queueNextItemCallback.Invoke();
-            }
-        //}
+        }
     }
 
     void RegisterChunkCompleteAudio()
@@ -476,8 +490,8 @@ public class TalkomicManager : MonoBehaviour
         int i = 0;
 
         //Add each section with start time. Each section will be generated as a directory in Assets/Output. Example below:
-        /*var element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Section Example", "0:00"));
-        summaryAndTimesAudioQueue.Enqueue(element);*/
+        var element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Section Example", "0:00"));
+        summaryAndTimesAudioQueue.Enqueue(element);
 
         //Example TechShift F9 episode 9
         /*var element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Introduction", "0:00"));
@@ -508,7 +522,8 @@ public class TalkomicManager : MonoBehaviour
         summaryAndTimesAudioQueue.Enqueue(element);
         element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Outro", "21:11"));*/
 
-        var element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Introductions", "0:00"));
+        //Programming Throwdown episode
+        /*var element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Introductions", "0:00"));
         summaryAndTimesAudioQueue.Enqueue(element);
         element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Hagay’s circuitous career journey", "02:09"));
         summaryAndTimesAudioQueue.Enqueue(element);
@@ -533,7 +548,7 @@ public class TalkomicManager : MonoBehaviour
         element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Careers in Mosaic", "87:01"));
         summaryAndTimesAudioQueue.Enqueue(element);
         element = new KeyValuePair<int, Tuple<string, string>>(i++, new Tuple<string, string>("Farewells", "91:46"));
-        summaryAndTimesAudioQueue.Enqueue(element);
+        summaryAndTimesAudioQueue.Enqueue(element);*/
 
         IEnumerator genDirsAndTextFiles = GenerateOutputDirectoriesAndTextFiles();
         yield return genDirsAndTextFiles;
