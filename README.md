@@ -18,6 +18,12 @@ In a Unity scene we loop the AI Models over each podcast audio section to genera
 
 <p>&nbsp;</p>
 
+<p align="center">
+<img width="150" alt="star" src="https://github.com/sergiosolorzano/ai_gallery/assets/24430655/3c0b02ea-9b11-401a-b6f5-c61b69ad651b">
+</p>
+
+---------------------------------------------
+
 ## Watch The [Trailer🎬](https://tapgaze.com/blog/podcast-to-image-slider/#podcast-trailer)
 <video src="https://github.com/sergiosolorzano/TalkomicApp-Unity/assets/24430655/99c3459a-6733-437d-8e1d-6d81a82c4edb" controls="controls" playsinline="playsinline">
       </video>
