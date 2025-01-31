@@ -1,4 +1,6 @@
 ## Project
+I am thrilled the Ready Tensor jury awarded the Talkomic App in the Ready Tensor Computer Vision 2024 Competition as the ["Most Engaging Presentation for skilfully combining technical depth with compelling clarity and storytelling"](https://www.readytensor.ai/cv-expo-2024/) 🚀
+<p>
 Watching a sound wave or unrelated images for a podcast that is published in a platform that supports video and images can be dull.
 
 We propose asking a trio of AI models, bundled in a [Unity](https://unity.com/) project, to transcribe the audio to text and generate contexual images closely tied to the transcribed text.
