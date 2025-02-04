@@ -1,4 +1,4 @@
-## Breaking News :)
+## Ready Tensor Computer Vision 2024 Competition Most Engaging Presentation Prize
 I am thrilled the Ready Tensor jury awarded the Talkomic App in the Ready Tensor Computer Vision 2024 Competition as the ["Most Engaging Presentation for skilfully combining technical depth with compelling clarity and storytelling"](https://www.readytensor.ai/cv-expo-2024/) 🚀
 <p><i>"This publication presents a creative approach to enhancing the podcast experience by generating contextual images from audio content through the Talkomic app. The creative presentation style, starting with a simple yet attention-grabbing title and followed by a highly engaging walk through the implementation, captures the reader's attention and makes complex concepts accessible. The judges applauded the authors for crafting a thoroughly enjoyable and informative read, exemplifying the essence of the Most Engaging Presentation prize."</i>
 
