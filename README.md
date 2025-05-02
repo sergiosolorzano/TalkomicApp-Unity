@@ -165,6 +165,10 @@ and [ai-forever](https://huggingface.co/ai-forever/Real-ESRGAN) for the [git rep
 
 and [yasirkula's Simple File Browser](https://github.com/yasirkula/UnitySimpleFileBrowser).
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=sergiosolorzano/TalkomicApp-Unity&type=Date)](https://www.star-history.com/#sergiosolorzano/TalkomicApp-Unity&Date)
+
   <p>&nbsp;</p>
 If you find this helpful you can buy me a coffee :)
    
